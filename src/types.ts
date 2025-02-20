@@ -1,4 +1,4 @@
-import type { BottomSheetModalProps } from '@gorhom/bottom-sheet';
+import type { BottomSheetModalProps } from '@gorhom/bottom-sheet'
 import type {
   DefaultNavigatorOptions,
   Descriptor,
@@ -8,20 +8,20 @@ import type {
   ParamListBase,
   RouteProp,
   StackActionHelpers,
-} from '@react-navigation/native';
+} from '@react-navigation/native'
 
 // TODO: Sheet open / close / snap / events.
-export type BottomSheetNavigationEventMap = {};
+export type BottomSheetNavigationEventMap = {}
 
 export type BottomSheetNavigationState<ParamList extends ParamListBase> = Omit<
   NavigationState<ParamList>,
   'routes'
 > & {
-  type: 'bottom-sheet';
+  type: 'bottom-sheet'
   routes: (NavigationState<ParamList>['routes'][number] & {
-    snapToIndex?: number | null;
-  })[];
-};
+    snapToIndex?: number | null
+  })[]
+}
 
 export type BottomSheetActionHelpers<ParamList extends ParamListBase> =
   StackActionHelpers<ParamList> & {
@@ -29,8 +29,8 @@ export type BottomSheetActionHelpers<ParamList extends ParamListBase> =
     /**
      * Snap the drawer to a point.
      */
-    snapTo(index?: number): void;
-  };
+    snapTo(index?: number): void
+  }
 
 export type BottomSheetNavigationProp<
   ParamList extends ParamListBase,
@@ -44,24 +44,24 @@ export type BottomSheetNavigationProp<
   BottomSheetNavigationOptions,
   BottomSheetNavigationEventMap
 > &
-  BottomSheetActionHelpers<ParamList>;
+  BottomSheetActionHelpers<ParamList>
 
 export type BottomSheetScreenProps<
   ParamList extends ParamListBase,
   RouteName extends keyof ParamList = string,
   NavigatorID extends string | undefined = undefined,
 > = {
-  navigation: BottomSheetNavigationProp<ParamList, RouteName, NavigatorID>;
-  route: RouteProp<ParamList, RouteName>;
-};
+  navigation: BottomSheetNavigationProp<ParamList, RouteName, NavigatorID>
+  route: RouteProp<ParamList, RouteName>
+}
 
 export type BottomSheetNavigationHelpers = NavigationHelpers<
   ParamListBase,
   BottomSheetNavigationEventMap
->;
+>
 
 // We want it to be an empty object because navigator does not have any additional props
-export type BottomSheetNavigationConfig = {};
+export type BottomSheetNavigationConfig = {}
 
 export type BottomSheetNavigationOptions = Omit<
   BottomSheetModalProps,
@@ -88,23 +88,25 @@ export type BottomSheetNavigationOptions = Omit<
    * snapPoints={['%100']}
    * @type Array<string | number>
    */
-  snapPoints?: Array<string | number>;
-};
+  snapPoints?: Array<string | number>
+}
 
 export type BottomSheetNavigatorProps = DefaultNavigatorOptions<
   ParamListBase,
+  undefined, // or your ID if you want a named ID, e.g. 'BottomSheetNavigator'
   BottomSheetNavigationState<ParamListBase>,
   BottomSheetNavigationOptions,
-  BottomSheetNavigationEventMap
+  BottomSheetNavigationEventMap,
+  BottomSheetNavigationHelpers
 > &
-  BottomSheetNavigationConfig;
+  BottomSheetNavigationConfig
 
 export type BottomSheetDescriptor = Descriptor<
   BottomSheetNavigationOptions,
   BottomSheetNavigationProp<ParamListBase>,
   RouteProp<ParamListBase>
->;
+>
 
 export type BottomSheetDescriptorMap = {
-  [key: string]: BottomSheetDescriptor;
-};
+  [key: string]: BottomSheetDescriptor
+}
